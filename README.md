@@ -2,7 +2,7 @@
 
 ### **Overview**
 socialApp a simple social app .
-
+see dbSchema.docx file to get more information about db instructure .
 ## dependencies
 1. moment
 2. firebase
