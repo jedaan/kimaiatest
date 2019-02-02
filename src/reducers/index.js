@@ -9,12 +9,14 @@ import failedLogInStatus from './failedLogInStatusReducer';
 import inComingRequest from "./imcomingRequestReducer";
 import myPosts from "./postsReducer";
 import registered from "./registerReducer";
+import postAdded from './psotsShowReducer';
 
 export default combineReducers({
     auth,
     users,
     myPosts,
     failedLogInStatus,
+    postAdded,
     requestSent,
     myFriends,
     pendingRequests,

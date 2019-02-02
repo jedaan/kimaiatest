@@ -26,16 +26,24 @@ class SendRequest extends Component {
     render() {
         let {users} = this.props;
         return (
-            <div style={{marginTop: 50}}>
-                <select name="user" className="select" onChange={this.change}>
-                    <option></option>
-                    {users.map((user, index) =>
-                        <option key={index} value={user.id}>{user.email}</option>
-                    )}
-                </select>
-                <button onClick={() => this.onSendRequest(this.props.userId, this.state.value, this.state.text)}>Send
-                    Request
-                </button>
+            <div>
+                {(users && users.length > 0) ?
+                    <div>
+                        <select name="user" className="select" onChange={this.change}>
+                            <option></option>
+                            {users.map((user, index) =>
+                                <option key={index} value={user.id}>{user.email}</option>
+                            )}
+                        </select>
+                        <button
+                            onClick={() => this.onSendRequest(this.props.userId, this.state.value, this.state.text)}>Send
+                            Request
+                        </button>
+                    </div> :
+                    <div>
+                        you are alone :) , there is no users .
+                    </div>
+                }
             </div>
         );
     }

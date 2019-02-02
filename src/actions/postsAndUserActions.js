@@ -11,6 +11,7 @@ import {
     FETCH_MY_POSTS,
     FETCH_USER,
     FETCH_USERS,
+    ADD_POST
 } from "./types";
 import moment from 'moment';
 
@@ -23,15 +24,31 @@ export const addPost = (userId, email, content) => async dispatch => {
         usersRef.child(userId + "/myPosts").push({
             content: content,
             publishDate: now,
-            email: email
-        }).then(response => {
-            console.log('res', response);
+            email: email,
         });
+        dispatch({
+            type: ADD_POST,
+            payload: true
+        });
+
     } catch (e) {
         console.log('error - addPost', e);
     }
 };
 
+/*
+* show add new post .
+* */
+export const showAddNewPost = () => async dispatch => {
+    try {
+        dispatch({
+            type: ADD_POST,
+            payload: false
+        });
+    } catch (e) {
+        console.log('error - addPost', e);
+    }
+};
 /*
 * fetch auth user .
 * */
@@ -68,6 +85,7 @@ export const fetchUsers = () => async dispatch => {
             let allUsers = await getAllUsers(userMail);
 
             let users = arrayUnique(allUsers.concat(myFriends));
+            debugger;
             dispatch({
                 type: FETCH_USERS,
                 payload: users

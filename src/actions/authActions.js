@@ -1,5 +1,5 @@
 import {authRef, usersRef} from '../config/firebase';
-import {REGISTER_USER, SUCCESS_LOG_IN, SUCCESS_LOG_OUT, FAILED_LOG_IN} from './types';
+import {REGISTER_USER, SUCCESS_LOG_IN, SUCCESS_LOG_OUT, FAILED_LOG_IN, ADD_POST} from './types';
 
 /*
 * sign in action .
@@ -59,6 +59,10 @@ export const signOut = () => dispatch => {
             dispatch({
                 type: REGISTER_USER,
                 payload: null
+            });
+            dispatch({
+                type: ADD_POST,
+                payload: false
             });
         })
         .catch(error => {
