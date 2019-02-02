@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
 import AddPost from '../components/AddPost';
+import Navigator from '../components/Navigator';
+import FriendsPosts from '../components/FriendsPosts';
 import {fetchFriendsPosts, removeFriendsPosts} from "../actions/postsAndUserActions";
 import {usersRef} from "../config/firebase";
 import {fetchInComingRequest, fetchPendingRequests} from "../actions/friendsRequestsActions";
@@ -30,36 +32,13 @@ class HomePage extends Component {
         let {friendsPosts} = this.props;
         return (
             <div>
-                <span className="span_link" onClick={() => {
-                    this.context.router.history.push("/searchFriends");
-                }}>Search friends
-                </span><span> --- </span>
-                <span className="span_link" onClick={() => {
-                    this.context.router.history.push("/manageRequests");
-                }}>Manage requests
-                </span><span> --- </span>
-                <span className="span_link" onClick={() => {
-                    this.context.router.history.push("/myPosts");
-                }}>My posts
-                </span>
-                <br/>
+                <Navigator router={this.context.router}/>
+
                 <div className="add_post_container">
                     <AddPost authenticated={this.props.authenticated}/>
                 </div>
-                <div className="friends_posts">
-                    Friends Posts : <span className="span_link" onClick={() => {
-                    this.props.handleFetchFriendsPosts()
-                }}> Reload posts </span>
-                    {(friendsPosts) ? friendsPosts.map((post, index) =>
-                            <div key={index}>
-                                <span className="post_content">{post.content}</span>
-                                <span className="post_data">{post.publishDate}</span>
-                                <span className="post_email"> -- {post.author}</span>
-                            </div>
-                        ) :
-                        <div> There is no posts from your friends .</div>
-                    }
-                </div>
+
+                <FriendsPosts popsts={friendsPosts} onFetchFriendsPosts={this.props.handleFetchFriendsPosts}/>
             </div>
         );
     }
