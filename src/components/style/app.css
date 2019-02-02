@@ -90,3 +90,9 @@ form button:disabled {
 .post_data {
     margin-left: 20px;
 }
+
+.span_link {
+    box-shadow: 1px 1px;
+    color: #ff6c00;
+    text-decoration: underline;
+}

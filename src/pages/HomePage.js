@@ -18,15 +18,15 @@ class HomePage extends Component {
         let {friendsPosts} = this.props;
         return (
             <div>
-                <span onClick={() => {
+                <span className="span_link" onClick={() => {
                     this.context.router.history.push("/searchFriends");
                 }}>Search friends
                 </span><span> --- </span>
-                <span onClick={() => {
+                <span className="span_link" onClick={() => {
                     this.context.router.history.push("/manageRequests");
                 }}>Manage requests
                 </span><span> --- </span>
-                <span onClick={() => {
+                <span className="span_link" onClick={() => {
                     this.context.router.history.push("/myPosts");
                 }}>My posts
                 </span>
@@ -35,7 +35,7 @@ class HomePage extends Component {
                     <AddPost authenticated={this.props.authenticated}/>
                 </div>
                 <div className="friends_posts">
-                    Friends Posts : <span onClick={() => {
+                    Friends Posts : <span className="span_link" onClick={() => {
                     this.props.handleFetchFriendsPosts()
                 }}> Reload posts </span>
                     {(friendsPosts) ? friendsPosts.map((post, index) =>

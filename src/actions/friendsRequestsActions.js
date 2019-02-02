@@ -84,6 +84,7 @@ export const rejectRequest = (id, email) => async dispatch => {
 * */
 export const fetchPendingRequests = () => async dispatch => {
     try {
+        debugger;
         let authUser = await getAuthUser();
         if (authUser !== null) {
             let users = [];

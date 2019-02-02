@@ -7,7 +7,7 @@ const PendingRequest = ({pendingRequests}) => {
             <h2>pending requests : </h2>
             {pendingRequests && pendingRequests.map((req, index) =>
                 <div key={index}>
-                    <span value={req.id}>{req.email}</span>
+                    <span className="span_link" value={req.id}>{req.email}</span>
                 </div>
             )}
         </div>

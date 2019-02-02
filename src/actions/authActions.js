@@ -44,7 +44,6 @@ export const registerUser = (email, password, name) => dispatch => {
 * sign out action .
 * */
 export const signOut = () => dispatch => {
-    debugger;
     authRef.signOut()
         .then(() => {
             dispatch({
