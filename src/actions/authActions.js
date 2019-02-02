@@ -1,5 +1,5 @@
 import {authRef, usersRef} from '../config/firebase';
-import {REGISTER_USER, SUCCESS_LOG_IN, SUCCESS_LOG_OUT} from './types';
+import {REGISTER_USER, SUCCESS_LOG_IN, SUCCESS_LOG_OUT, FAILED_LOG_IN} from './types';
 
 /*
 * sign in action .
@@ -12,9 +12,15 @@ export const signInWithEmail = (email, password) => dispatch => {
                 type: SUCCESS_LOG_IN,
                 payload: user
             });
+        }).catch(function (error) {
+            let logInStatus = 'failed';
+            dispatch({
+                type: FAILED_LOG_IN,
+                payload: logInStatus
+            });
         });
     } catch (e) {
-        console.log(e.message);
+        console.log('error - signInWithEmail ', e.message);
     }
 };
 
@@ -33,10 +39,10 @@ export const registerUser = (email, password, name) => dispatch => {
                 });
             });
         }, (error) => {
-            console.log('error', error);
+            console.log('error -- registerUser ', error);
         });
     } catch (e) {
-        console.log(e.message);
+        console.log('error -- registerUser ', e.message);
     }
 };
 
@@ -56,6 +62,6 @@ export const signOut = () => dispatch => {
             });
         })
         .catch(error => {
-            console.log(error);
+            console.log('error -- signOut ', error);
         });
 };

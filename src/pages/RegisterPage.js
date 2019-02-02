@@ -32,7 +32,6 @@ class RegisterPage extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const {user} = this.state;
-        console.log(this.props);
         if (user.firstName && user.email && user.password && user.confirmPassword) {
             if (user.password === user.confirmPassword) {
                 this.props.handleRegisterUser(user.email, user.password, user.firstName);

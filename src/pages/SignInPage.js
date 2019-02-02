@@ -30,14 +30,16 @@ class SignInPage extends Component {
     };
 
 
-    handleSubmit = (evt) => {
-        evt.preventDefault();
-        console.log('ss', this.props);
-        this.props.signInWithEmail(this.state.email, this.state.password);
+    handleSubmit = (event) => {
+        event.preventDefault();
+        const {email, password} = this.state;
+        if (email && password) {
+            this.props.signInWithEmail(email, password);
+        }
     };
 
-
     render() {
+        let {failedLogInStatus} = this.props;
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
@@ -60,14 +62,15 @@ class SignInPage extends Component {
                         this.context.router.history.push("/register");
                     }}>Sign Up
                     </button>
+                    {failedLogInStatus && <span>wrong email or password . </span>}
                 </form>
             </div>
         );
     }
 }
 
-function mapStateToProps({auth}) {
-    return {auth};
+function mapStateToProps({auth, failedLogInStatus}) {
+    return {auth, failedLogInStatus};
 }
 
 function mapDispatchToProps(dispatch) {
@@ -75,8 +78,8 @@ function mapDispatchToProps(dispatch) {
         signInWithEmail: (email, password) => {
             dispatch(signInWithEmail(email, password));
             dispatch(fetchUsers());
-        },
-    })
+        }
+    });
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignInPage);

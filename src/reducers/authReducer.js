@@ -1,4 +1,4 @@
-import {FETCH_USER, SUCCESS_LOG_IN, SUCCESS_LOG_OUT} from "../actions/types";
+import {FETCH_USER, SUCCESS_LOG_IN, SUCCESS_LOG_OUT,FAILED_LOG_IN} from "../actions/types";
 
 export default (state = null, action) => {
     switch (action.type) {
