@@ -15,7 +15,6 @@ class AddPost extends Component {
 
     render() {
         let {postAdded} = this.props;
-        debugger;
         return (
             <div>
                 {(postAdded) ? <div>your post added press

@@ -85,7 +85,6 @@ export const fetchUsers = () => async dispatch => {
             let allUsers = await getAllUsers(userMail);
 
             let users = arrayUnique(allUsers.concat(myFriends));
-            debugger;
             dispatch({
                 type: FETCH_USERS,
                 payload: users

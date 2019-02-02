@@ -15,9 +15,9 @@ class SearchFriendsPage extends Component {
         return (
             <div>
                 All users .
-                <SendRequest userId={this.props.authenticated.uid}
-                             users={users}
-                             onRequestSend={this.props.handleSendFriendRequest}/>
+                {(users) && <SendRequest userId={this.props.authenticated.uid}
+                                         users={users}
+                                         onRequestSend={this.props.handleSendFriendRequest}/>}
 
             </div>
         );
