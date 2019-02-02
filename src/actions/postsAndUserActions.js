@@ -1,5 +1,11 @@
 import {authRef, usersRef} from '../config/firebase';
-import {getAuthUser, getAllMyFriends, getAllPostsFormMyFriends, getAllUsers, arrayUnique} from './helper';
+import {
+    getAuthUser,
+    getAllMyFriends,
+    getAllPostsFormMyFriends,
+    getAllUsers,
+    arrayUnique,
+} from './helper';
 import {
     FETCH_FRIENDS_POSTS,
     FETCH_MY_POSTS,
@@ -102,6 +108,7 @@ export const fetchMyPosts = () => async dispatch => {
 * */
 export const fetchFriendsPosts = () => async dispatch => {
     try {
+        console.log('pp--fetchFriendsPosts');
         let authUser = await getAuthUser();
         if (authUser !== null) {
             let uid = authUser.uid;

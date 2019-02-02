@@ -3,6 +3,8 @@ import {connect} from "react-redux";
 import PropTypes from 'prop-types';
 import AddPost from '../components/AddPost';
 import {fetchFriendsPosts, removeFriendsPosts} from "../actions/postsAndUserActions";
+import {usersRef} from "../config/firebase";
+import {fetchInComingRequest, fetchPendingRequests} from "../actions/friendsRequestsActions";
 
 class HomePage extends Component {
 
@@ -10,8 +12,18 @@ class HomePage extends Component {
         router: PropTypes.object
     };
 
+    componentWillMount() {
+        let me = this;
+        usersRef.on('child_changed', function (snapshot) {
+            setTimeout(() => {
+                me.props.handleDataChanged();
+            }, 1000);
+        });
+    }
+
     componentDidMount() {
         this.props.handleFetchFriendsPosts();
+        this.props.handleDataChanged();
     }
 
     render() {
@@ -63,8 +75,14 @@ const mapStateToProps = ({friendsPosts}) => {
 function mapDispatchToProps(dispatch) {
     return ({
         handleFetchFriendsPosts: () => {
-            dispatch(removeFriendsPosts())
+            dispatch(removeFriendsPosts());
             dispatch(fetchFriendsPosts());
+        },
+        handleDataChanged: () => {
+            dispatch(removeFriendsPosts());
+            dispatch(fetchFriendsPosts());
+            dispatch(fetchPendingRequests());
+            dispatch(fetchInComingRequest());
         }
     })
 }

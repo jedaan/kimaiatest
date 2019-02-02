@@ -1,5 +1,6 @@
 import {authRef, usersRef} from "../config/firebase";
 
+
 /*
 * get auth user .
 * */
@@ -11,7 +12,7 @@ export const getAuthUser = () => {
             }, 0);
         });
     } catch (e) {
-        console.log('error - removeFriendsPosts', e);
+        console.log('error - getAuthUser', e);
     }
 };
 
@@ -109,7 +110,7 @@ export const getIncomingRequests = async (authUser) => {
                 resolve(inComingRequest);
             });
         } catch (e) {
-            console.log('error - removeFriendsPosts', e);
+            console.log('error - getIncomingRequests', e);
         }
     });
 };
