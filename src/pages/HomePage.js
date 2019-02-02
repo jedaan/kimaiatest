@@ -18,7 +18,6 @@ class HomePage extends Component {
         let me = this;
         usersRef.on('child_changed', function (snapshot) {
             setTimeout(() => {
-                console.log('snapshot', snapshot);
                 me.props.handleDataChanged();
             }, 1000);
         });
